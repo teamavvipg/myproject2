@@ -1,230 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TIGRO CLUB PREMIUM MOD</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; overflow: hidden; background: #000; font-family: 'Segoe UI', sans-serif; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DK WIN ULTRA MAX </title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@400;700;900&display=swap');
 
-        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
-        .sig-active { animation: pulse 1s infinite ease-in-out; }
+body, html { margin:0; padding:0; height:100%; background: #000; font-family: 'Poppins', sans-serif; overflow: hidden; color: #fff; width: 100%; position: fixed; }
 
-        /* --- UNCOMMON PREMIUM LOGIN --- */
-        #loginPage {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: #050a14;
-        }
-        .login-card {
-            background: linear-gradient(145deg, #0b1426, #010205);
-            border: 1px solid #1fa7ff;
-            padding: 40px 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(31, 167, 255, 0.2);
-            width: 85%; max-width: 320px;
-            position: relative;
-        }
-        .login-card::before {
-            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, #1fa7ff, transparent, #ff4757);
-            z-index: -1; border-radius: 22px;
-        }
-        .login-card h2 { color: #fff; text-transform: uppercase; letter-spacing: 3px; font-size: 22px; margin-bottom: 10px; }
-        .login-card p { color: #5fb9ff; font-size: 10px; margin-bottom: 30px; letter-spacing: 1px; }
-        .enter-btn {
-            background: #1fa7ff; color: #fff; border: none; padding: 12px 35px; border-radius: 5px;
-            font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(31, 167, 255, 0.4);
-        }
+/* ЁЯМИ ANIMATED RGB BORDER LIGHT */
+@keyframes rotateBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        /* --- SIGNAL PANEL --- */
-        #signalPanel {
-            position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
-            width: 220px; background: #0c1b33; border: 2px solid #5fb9ff; border-radius: 18px;
-            color: #fff; z-index: 10000; box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-            cursor: move; touch-action: none; display: flex; flex-direction: column; align-items: center; overflow: hidden;
-        }
+#panel {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 260px; background: #0f0f0f;
+    border-radius: 20px; padding: 12px; z-index: 5000; /* рж╕рж░рзНржмрзЛржЪрзНржЪ ржЙржкрж░рзЗ рж░рж╛ржЦрж╛ рж╣рзЯрзЗржЫрзЗ */
+    touch-action: none; box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 2px solid transparent; position: relative; overflow: hidden;
+    backdrop-filter: blur(15px);
+}
 
-        .panel-header { width: 100%; background: #1fa7ff; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 9px; font-weight: bold; }
-        #server_status { display: none; color: #ff4757; font-size: 8px; }
+#panel::before {
+    content: ''; position: absolute; inset: 0; padding: 2px;
+    border-radius: 20px; background: linear-gradient(90deg, #ff003c, #00d4ff, #ffcc00, #ff003c);
+    background-size: 300% 300%; animation: rotateBorder 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+}
 
-        /* BD Time Style */
-        #bd_time { color: #ff4757; font-weight: bold; font-size: 14px; margin-top: 10px; font-family: 'Courier New', Courier, monospace; }
+.light-mode-panel { background: #ffffff !important; color: #000 !important; }
+.light-mode-panel span, .light-mode-panel p { color: #000 !important; }
 
-        .p-signal { font-size: 45px; font-weight: 900; color: #b794f4; font-style: italic; margin: 5px 0; text-align: center; text-shadow: 0 0 15px rgba(183, 148, 244, 0.5); }
-        #status_text { font-size: 10px; color: #00d2d3; margin-bottom: 5px; font-weight: bold; }
-        .period-info { font-size: 12px; color: #5fb9ff; margin-bottom: 10px; font-weight: bold; }
+#signalText { font-family: 'Orbitron', sans-serif; font-size: 36px; font-weight: 900; text-align: center; background: linear-gradient(to bottom, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .btn-activate {
-            width: 85%; background: #fff; color: #000; border: none; border-radius: 20px; 
-            padding: 8px; font-weight: bold; font-size: 12px; cursor: pointer; margin-bottom: 12px;
-        }
-        .btn-active { background: #ff4757 !important; color: #fff !important; }
+/* ЁЯФТ LOCK OVERLAY */
+#lockPage { position: fixed; inset: 0; z-index: 4000; background: rgba(0,0,0,0.4); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 40px; backdrop-filter: blur(2px); }
+.lock-card { background: #0f0f0f; border-radius: 40px; padding: 30px 20px; width: 90%; max-width: 320px; text-align: center; box-shadow: 0 0 40px rgba(255, 0, 0, 0.3); position: relative; }
 
-        .history-box { width: 100%; background: rgba(0,0,0,0.4); padding: 8px; border-top: 1px solid rgba(31, 167, 255, 0.3); font-size: 10px; }
-        .history-title { font-weight: bold; color: #5fb9ff; margin-bottom: 5px; font-size: 9px; }
-        .hist-item { display: flex; justify-content: space-between; margin-bottom: 3px; }
-        
-        .tg-btn { width: 100%; background: #0088cc; color: #fff; text-decoration: none; padding: 8px; text-align: center; font-size: 10px; font-weight: bold; display: block; }
-        .win-text { color: #00ff00; }
-        .loss-text { color: #ff4757; }
+.team-banner { background: linear-gradient(90deg, #ff0000, #990000); color: white; padding: 3px 12px; border-radius: 50px; font-weight: 900; font-size: 9px; text-transform: uppercase; }
 
-        #gamePage { display: none; height: 100vh; position: relative; }
-        iframe { width: 100%; height: 100%; border: none; }
-    </style>
+.btn { padding: 12px; border-radius: 15px; font-weight: 900; cursor: pointer; transition: 0.3s; border: none; font-size: 10px; width: 100%; text-transform: uppercase; }
+.btn-red { background: linear-gradient(145deg, #ff003c, #80001e); color: #fff; }
+
+#pass { width: 100%; padding: 14px; border-radius: 15px; text-align: center; margin-bottom: 12px; background: #000; border: 1px solid #333; color: #ffcc00; font-weight: bold; }
+
+.bar { height: 5px; background: #222; border-radius: 10px; overflow: hidden; margin: 8px 0; }
+#loader { height: 100%; background: #ff0000; width: 0%; transition: 0.1s linear; }
+
+/* ЁЯУК HISTORY BOX */
+.history-box { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 8px; }
+.h-item { height: 42px; border-radius: 8px; font-size: 8px; font-weight: 900; display: flex; flex-direction: column; align-items: center; justify-content: center; text-transform: uppercase; }
+.h-win { background: #00ff88; color: #000; box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+.h-loss { background: #ff3333; color: #fff; box-shadow: 0 0 10px rgba(255, 51, 51, 0.3); }
+.h-label { font-size: 6px; font-weight: 700; margin-top: 1px; opacity: 0.9; }
+
+/* ЁЯХ╣я╕П FIXED GAME PAGE */
+#gamePage { position: fixed; inset: 0; width: 100vw; height: 100vh; overflow: hidden; display: none; z-index: 1; }
+#frame { width: 100%; height: 100%; border: none; overflow: hidden; }
+</style>
 </head>
 <body>
 
-<div id="loginPage">
-    <div class="login-card">
-        <h2>TEAM AV</h2>
-        <p> AI lottery mode APK </p>
-        <button class="enter-btn" onclick="enterSystem()">ACCESS SYSTEM</button>
+<div id="panel">
+    <div class="flex justify-between items-center mb-1">
+        <span id="clock" class="text-[9px] font-bold opacity-60">00:00:00</span>
+        <div class="team-banner">TEAMЁЯСЙAVЁЯФе</div>
+    </div>
+    <p id="periodText" class="text-center font-black text-yellow-500 text-[13px]">PERIOD: LOCKED</p>
+    <div id="signalBox">
+        <div id="signalText">WAIT</div>
+    </div>
+    <div class="space-y-1 font-bold text-[10px]">
+        <div class="flex justify-between px-1">
+            <span class="text-green-500">WIN: <span id="winCount" class="text-white">0</span></span>
+            <span class="text-red-500">LOSS: <span id="lossCount" class="text-white">0</span></span>
+        </div>
+        <div class="bar"><div id="loader"></div></div>
+    </div>
+    <div class="history-box" id="historyBox"></div>
+    <div class="flex gap-1 mt-2">
+        <button class="btn bg-zinc-800 text-white flex-1 py-1.5 text-[7px]" onclick="toggleDarkMode()">DARK MODE</button>
+        <button class="btn bg-zinc-800 text-white flex-1 py-1.5 text-[7px]" onclick="toggleVIP()">VIP</button>
+        <button class="btn bg-red-900/40 text-red-500 flex-1 py-1.5 text-[7px]" onclick="clearHistory()">CLEAR</button>
+    </div>
+</div>
+
+<div id="lockPage">
+    <div class="lock-card">
+        <div class="team-banner" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%);">TEAM AV</div>
+        <div class="mt-2"><div class="text-xl font-black mb-4">ЁЯФТ VIP ACCESS</div></div>
+        <input id="pass" type="password" placeholder="ENTER MASTER KEY">
+        <button class="btn btn-red mb-2" onclick="unlock()">UNLOCK SYSTEM</button>
+        <a href="https://t.me/+Z-1lO8scibBkMzg9" target="_blank" class="text-blue-400 font-bold text-[12px] block mt-2">DELIVER TELEGRAM</a>
     </div>
 </div>
 
 <div id="gamePage">
-    <div id="signalPanel">
-        <div class="panel-header">
-            <span>LOTTERY PANEL</span>
-            <div id="server_status">CONNECTED🚦</div>
-        </div>
-        
-        <div id="bd_time">00:00:00 PM</div>
-
-        <div style="font-size:8px; color:#aaa; margin-top:5px; text-transform: uppercase;">Signal Analysis</div>
-        <div id="sig_text" class="p-signal">OFFLINE</div>
-        
-        <div id="status_text">SYSTEM READY</div>
-        <div id="periodText" class="period-info">PERIOD: -----</div>
-
-        <button id="actionBtn" class="btn-activate" onclick="handleStart()"> পাসওয়ার্ড প্লিজ </button>
-        
-        <div class="history-box">
-            <div class="history-title">LAST 5 HISTORY</div>
-            <div id="history_list">
-                <div style="color:#636e72">Inactive...</div>
-            </div>
-        </div>
-        
-        <a href="https://t.me/+Z-1lO8scibBkMzg9" target="_blank" class="tg-btn">JOIN TELEGRAM</a>
-    </div>
-    <iframe id="gameIframe" src=""></iframe>
+    <iframe id="frame" src="about:blank"></iframe>
 </div>
 
 <script>
-    // BD Time Function
-    function updateBDTime() {
-        const now = new Date();
-        const bdTime = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        document.getElementById('bd_time').innerText = bdTime;
-    }
-    setInterval(updateBDTime, 1000);
+const PASS = "TEAMAVP";
+const API_URL = 'https://api.bdg88zf.com/api/webapi/GetGameIssue';
+const REQ_DATA = { typeId: 1, language: 0, random: "e7fe6c090da2495ab8290dac551ef1ed", signature: "1F390E2B2D8A55D693E57FD905AE73A7", timestamp: Math.floor(Date.now()/1000) };
 
-    const API_CONFIG = {
-        URL: 'https://api.bdg88zf.com/api/webapi/GetGameIssue',
-        PAYLOAD: { typeId: 1, language: 0, random: "e7fe6c090da2495ab8290dac551ef1ed", signature: "1F390E2B2D8A55D693E57FD905AE73A7" }
-    };
-    
-    let isRunning = false;
-    let lastPeriod = "";
-    let historyData = [];
+let lastPeriod = "", historyData = [], winCount = 0, lossCount = 0, isActive = false;
 
-    function enterSystem() {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('gamePage').style.display = 'block';
-        document.getElementById('gameIframe').src = "https://tinyurl.com/Winxsignal-Viptigroclub";
-    }
+// ржШрзЬрж┐ ржЖржкржбрзЗржЯ
+setInterval(() => { document.getElementById("clock").innerText = new Date().toLocaleTimeString(); }, 1000);
 
-    function handleStart() {
-        if (!isRunning) {
-            let pass = prompt("ENTER SYSTEM PASSWORD:");
-            if (pass === "1213") { toggleSystem(true); } 
-            else { alert("ACCESS DENIED!"); }
-        } else { toggleSystem(false); }
-    }
+function toggleDarkMode() { document.getElementById("panel").classList.toggle("light-mode-panel"); }
+function toggleVIP() { document.getElementById("signalBox").style.filter = document.getElementById("signalBox").style.filter === 'blur(10px)' ? 'blur(0)' : 'blur(10px)'; }
+function clearHistory() { historyData = []; winCount = 0; lossCount = 0; document.getElementById("winCount").innerText = "0"; document.getElementById("lossCount").innerText = "0"; document.getElementById("historyBox").innerHTML = ""; }
 
-    function toggleSystem(start) {
-        const btn = document.getElementById("actionBtn");
-        const statusHeader = document.getElementById("server_status");
-        const sigText = document.getElementById("sig_text");
+function unlock() {
+    if(document.getElementById("pass").value.toUpperCase() === PASS) {
+        isActive = true;
+        document.getElementById("lockPage").style.display = "none";
+        document.getElementById("gamePage").style.display = "block";
+        // ржЧрзЗржо рж▓рж┐ржВржХ рж▓рзЛржб
+        document.getElementById("frame").src = "https://dkwin.org/#/register?invitationCode=57752122669";
+        document.getElementById("signalText").innerText = "SYNC";
+        startSync();
+    } else { alert("WRONG KEY!"); }
+}
 
-        if (start) {
-            isRunning = true;
-            btn.innerText = "STOP SYSTEM";
-            btn.classList.add("btn-active");
-            statusHeader.style.display = "block";
-            sigText.innerText = "SYNC...";
-            sigText.classList.add('sig-active');
-            startMasterSync();
-        } else {
-            isRunning = false;
-            btn.innerText = "START SYSTEM";
-            btn.classList.remove("btn-active");
-            statusHeader.style.display = "none";
-            sigText.innerText = "OFFLINE";
-            sigText.classList.remove('sig-active');
-            document.getElementById("status_text").innerText = "SYSTEM READY";
-            document.getElementById("periodText").innerText = "PERIOD: -----";
-        }
-    }
-
-    async function startMasterSync() {
-        if (!isRunning) return;
-        const payload = { ...API_CONFIG.PAYLOAD, timestamp: Math.floor(Date.now()/1000) };
-
-        try {
-            const response = await fetch(API_CONFIG.URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-            const json = await response.json();
-            
-            if (json && json.data && isRunning) {
-                let currentIssue = json.data.issueNumber;
-                if (currentIssue !== lastPeriod) {
-                    if (lastPeriod !== "") { updateHistory(lastPeriod.slice(-5)); }
-                    lastPeriod = currentIssue;
-                    document.getElementById("periodText").innerText = "PERIOD: " + currentIssue.slice(-5);
-                    let digitsSum = currentIssue.split('').reduce((a, b) => a + (parseInt(b) || 0), 0);
-                    let prediction = (digitsSum % 2 === 0) ? "BIG" : "SMALL";
-                    document.getElementById("sig_text").innerText = prediction;
-                    document.getElementById("status_text").innerText = "DATA FETCHED ✔";
-                }
+async function startSync() {
+    if(!isActive) return;
+    try {
+        const res = await fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(REQ_DATA) });
+        const json = await res.json();
+        if (json && json.data) {
+            let issue = json.data.issueNumber;
+            if (issue !== lastPeriod) {
+                lastPeriod = issue;
+                document.getElementById("periodText").innerText = "PERIOD: " + issue.slice(-5);
+                runSignal(issue);
             }
-        } catch (error) { if(isRunning) document.getElementById("sig_text").innerText = "RETRY"; }
-        setTimeout(startMasterSync, 2000);
-    }
-
-    function updateHistory(period) {
-        let winStatus = Math.random() > 0.4 ? "WIN ✔" : "LOSS ✖";
-        let color = winStatus.includes("WIN") ? "win-text" : "loss-text";
-        historyData.unshift(`<div class="hist-item"><span>P-${period}</span> <span class="${color}">${winStatus}</span></div>`);
-        if (historyData.length > 5) historyData.pop();
-        document.getElementById("history_list").innerHTML = historyData.join('');
-    }
-
-    // Drag Logic
-    const panel = document.getElementById("signalPanel");
-    let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
-    panel.addEventListener("touchstart", (e) => {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-        if (e.target.closest('.panel-header') || e.target === panel) active = true;
-    });
-    window.addEventListener("touchend", () => active = false);
-    window.addEventListener("touchmove", (e) => {
-        if (active) {
-            e.preventDefault();
-            currentX = e.touches[0].clientX - initialX;
-            currentY = e.touches[0].clientY - initialY;
-            xOffset = currentX; yOffset = currentY;
-            panel.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
         }
+    } catch (e) {}
+    setTimeout(startSync, 2000);
+}
+
+function runSignal(issue) {
+    const sigEl = document.getElementById("signalText");
+    const loader = document.getElementById("loader");
+    let p = 0; sigEl.innerText = "WAIT";
+    let timer = setInterval(() => {
+        p += 2; loader.style.width = p + "%";
+        if(p >= 100) {
+            clearInterval(timer);
+            let result = (issue.split('').reduce((a, b) => a + (parseInt(b) || 0), 0) % 2 === 0) ? "BIG" : "SMALL";
+            sigEl.innerText = result;
+            sigEl.style.webkitTextFillColor = (result === "BIG") ? "#00ff88" : "#ff3333";
+            let isWin = Math.random() > 0.4;
+            if(isWin) { winCount++; confetti({ particleCount: 50, origin: { y: 0.7 } }); } else { lossCount++; }
+            document.getElementById("winCount").innerText = winCount;
+            document.getElementById("lossCount").innerText = lossCount;
+            updateHistory(result, isWin);
+        }
+    }, 50);
+}
+
+function updateHistory(res, win) {
+    if(historyData.length >= 10) historyData.pop();
+    historyData.unshift({ type: res, status: win ? "WIN" : "LOSS" });
+    const box = document.getElementById("historyBox");
+    box.innerHTML = "";
+    historyData.forEach(item => {
+        let div = document.createElement("div");
+        div.className = `h-item ${item.status === 'WIN' ? 'h-win' : 'h-loss'}`;
+        div.innerHTML = `<span>${item.type}</span><span class="h-label">${item.status}</span>`;
+        box.appendChild(div);
     });
+}
+
+// DRAGGABLE LOGIC
+const pnl = document.getElementById("panel");
+let drag=false, sx, sy, ix, iy;
+pnl.addEventListener("touchstart", e => { drag=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; ix=pnl.offsetLeft; iy=pnl.offsetTop; });
+document.addEventListener("touchmove", e => { if(!drag) return; 
+    let nx = ix + (e.touches[0].clientX - sx);
+    let ny = iy + (e.touches[0].clientY - sy);
+    pnl.style.left = nx + "px"; pnl.style.top = ny + "px"; pnl.style.transform = "none";
+});
+document.addEventListener("touchend", () => drag=false);
 </script>
-
-
 </body>
+</html>
